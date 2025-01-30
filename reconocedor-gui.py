@@ -52,6 +52,28 @@ class AppIA:
             text='por Agustín Bustos Piasentini\nhttps://www.Agustin-Bustos-Piasentini.com.ar/')
         Label_2.pack(expand=True, side="top")
         
+        # crear función para abrir archivos de texto en una ventana emergente, con un botón de guardar
+        def abrir_archivo_de_texto(archivo):
+            with open(archivo, "r") as file:
+                text = file.read()
+            Toplevel_2 = tk.Tk()
+            Toplevel_2.title(archivo)
+            Text_1 = tk.Text(Toplevel_2)
+            Text_1.insert(tk.END, text)
+            Text_1.pack(expand=True, fill="both")
+            Button_1 = ttk.Button(Toplevel_2)
+            Button_1.configure(text='Guardar')
+            Button_1.pack(expand=True, side="top")
+            Toplevel_2.mainloop()
+            
+        self.Configuraciones = ttk.Button(Toplevel_1, name="configuraciones")
+        self.Configuraciones.configure(text='Editar configuraciones', command=lambda: abrir_archivo_de_texto(".env"))
+        self.Configuraciones.pack(expand=True, pady=4, side="top")
+        
+        self.EditarPromptGeneral = ttk.Button(Toplevel_1, name="editarPromptGeneral")
+        self.EditarPromptGeneral.configure(text='Editar Prompt General', command=lambda: abrir_archivo_de_texto("promt-general.txt"))
+        self.EditarPromptGeneral.pack(expand=True, pady=4, side="top")
+        
         self.Consultas_restantes = ttk.Button(Toplevel_1, name="consultas_restantes")
         self.Consultas_restantes.configure(text='Consultas Restantes', command=consulta_requests_restantes_valor)
         self.Consultas_restantes.pack(expand=True, pady=4, side="top")
