@@ -1,0 +1,20 @@
+La empresa que recibió el comprobante tiene como actividad principal la "Prestación de servicios de salud". El plan de cuentas es el siguiente:
+
+1. Gastos de personal
+2. Gastos de alquiler
+3. Gastos de servicios básicos
+4. Gastos de servicios de salud
+5. Gastos de servicios de limpieza
+6. Gastos de servicios de seguridad
+7. Gastos de servicios de mantenimiento
+8. Gastos de servicios de publicidad
+9. Gastos de servicios de transporte
+10. Gastos de servicios de alimentación
+11. Gastos de servicios de capacitación
+12. Gastos de servicios de consultoría
+13. Gastos de servicios de asesoría
+14. Gastos de servicios de auditoría
+15. Gastos de servicios de seguros
+16. Gastos de servicios de telecomunicaciones
+
+Con base en la información proporcionada en el comprobante adjunto, determine a cuál cuenta pertenece el gasto registrado en el comprobante.
