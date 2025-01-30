@@ -56,13 +56,19 @@ class AppIA:
         def abrir_archivo_de_texto(archivo):
             with open(archivo, "r") as file:
                 text = file.read()
-            Toplevel_2 = tk.Tk()
+            Toplevel_2 = tk.Toplevel()
             Toplevel_2.title(archivo)
             Text_1 = tk.Text(Toplevel_2)
             Text_1.insert(tk.END, text)
             Text_1.pack(expand=True, fill="both")
+            
+            def guardar_cambios():
+                with open(archivo, "w") as file:
+                    file.write(Text_1.get("1.0", tk.END))
+                messagebox.showinfo("Guardado", "El archivo ha sido guardado exitosamente.")
+            
             Button_1 = ttk.Button(Toplevel_2)
-            Button_1.configure(text='Guardar')
+            Button_1.configure(text='Guardar', command=guardar_cambios)
             Button_1.pack(expand=True, side="top")
             Toplevel_2.mainloop()
             
