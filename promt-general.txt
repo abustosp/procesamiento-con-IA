@@ -18,3 +18,5 @@ La empresa que recibió el comprobante tiene como actividad principal la "Presta
 16. Gastos de servicios de telecomunicaciones
 
 Con base en la información proporcionada en el comprobante adjunto, determine a cuál cuenta pertenece el gasto registrado en el comprobante.
+
+Contestar Solamente con la descripción de la cuenta contable, por ejemplo: "Gastos de personal". No se debe incluir explicación adicional.

@@ -50,7 +50,7 @@ def agregar_datos_al_Response(prompt:str,
                                 datos_originales:str,
                                 proveedor_ia:str) -> str:
     
-    prompt2 = prompt + datos_originales
+    prompt2 = f"{prompt}\n{datos_originales}"
     
     # Se envía el prompt, seed, temperature y modelo a la API
     if proveedor_ia.upper() == 'OLLAMA':    
@@ -82,10 +82,7 @@ def agregar_datos_al_Response(prompt:str,
     
     try:
         response = requests.post(url=api_url, json=payload, headers=headers) 
-        if proveedor_ia == 'OLLAMA':
-            return response.json().get('response', datos_originales)
-        else:
-            return response.json()['choices'][0]['message']['content']
+        return response.json()
     except Exception as e:
         return f"Error: {e}"
         
@@ -144,23 +141,20 @@ def consulta_reconocedor_pdf_individual(pdf_path):
         with open("promt-general.txt", "r") as prompt_file:
             prompt = prompt_file.read()
         proveedor_ia, modelo_ia, url_ia, api_key_ia, min_seed, max_seed, min_temperature, max_temperature = ia_data()
-        response_json = response.json()
-        if isinstance(response_json, list):
-            for item in response_json:
-                if "text" in item:
-                    seed = randint(int(min_seed), int(max_seed))
-                    temperature = randint(int(min_temperature*100), int(max_temperature*100))/100
-                    item["Respuesta_IA"] = agregar_datos_al_Response(prompt, seed, temperature, modelo_ia, api_key_ia, url_ia, item["text"], proveedor_ia)
-        elif "text" in response_json:
-            seed = randint(int(min_seed), int(max_seed))
-            temperature = randint(int(min_temperature*100), int(max_temperature*100))/100
-            response_json["Respuesta_IA"] = agregar_datos_al_Response(prompt, seed, temperature, modelo_ia, api_key_ia, url_ia, response_json["text"], proveedor_ia)
-        if isinstance(response_json, list):
-            return {"original_response": response_json, "Respuesta_IA": [item.get("Respuesta_IA", "") for item in response_json]}
+        seed = randint(int(min_seed), int(max_seed))
+        temperature = randint(int(float(min_temperature)*100), int(float(max_temperature)*100))/100
+        datos_originales = response.json()
+        datos_originales = datos_originales[0] if isinstance(datos_originales, list) else datos_originales
+        response2 = agregar_datos_al_Response(prompt, seed, temperature, modelo_ia, api_key_ia, url_ia, json.dumps(datos_originales), proveedor_ia)
+        # convertir response a diccionario y agregar respuesta_ia
+        response_dict = datos_originales
+        if proveedor_ia.upper() == "OLLAMA":
+            response_dict["respuesta_ia"] = response2.get("response", "")
         else:
-            return {"original_response": response_json, "Respuesta_IA": response_json.get("Respuesta_IA", "")}
-
-    return {"original_response": response.json(), "Respuesta_IA": ""}
+            response_dict["respuesta_ia"] = response2['choices'][0]['message']['content']
+        return response_dict
+    
+    return response.json()
 
 
 def select_folder_and_analyze_pdfs():
@@ -181,7 +175,7 @@ def select_folder_and_analyze_pdfs():
 
 if __name__ == "__main__":
     #url, mail, key = credenciales()
-    response = consulta_requests_restantes()
+    # response = consulta_requests_restantes()
     # response = consulta_reconocedor_pdf_individual(mail, url, "/home/abp/Downloads/20374730429_011_00001_00000120.pdf")
-    # response = select_folder_and_analyze_pdfs()
+    response = select_folder_and_analyze_pdfs()
     print(response)
