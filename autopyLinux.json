@@ -1,0 +1,65 @@
+{
+ "version": "auto-py-to-exe-configuration_v1",
+ "pyinstallerOptions": [
+  {
+   "optionDest": "noconfirm",
+   "value": true
+  },
+  {
+   "optionDest": "filenames",
+   "value": "/mnt/ssd1/Proyectos Python/Scripts/Mr bot/clientes/procesamiento-con-IA/reconocedor-gui.py"
+  },
+  {
+   "optionDest": "onefile",
+   "value": true
+  },
+  {
+   "optionDest": "console",
+   "value": false
+  },
+  {
+   "optionDest": "icon_file",
+   "value": "/mnt/ssd1/Proyectos Python/Scripts/Mr bot/clientes/procesamiento-con-IA/bin/ABP-blanco-en-fondo-negro.ico"
+  },
+  {
+   "optionDest": "clean_build",
+   "value": false
+  },
+  {
+   "optionDest": "strip",
+   "value": false
+  },
+  {
+   "optionDest": "noupx",
+   "value": false
+  },
+  {
+   "optionDest": "disable_windowed_traceback",
+   "value": false
+  },
+  {
+   "optionDest": "uac_admin",
+   "value": false
+  },
+  {
+   "optionDest": "uac_uiaccess",
+   "value": false
+  },
+  {
+   "optionDest": "argv_emulation",
+   "value": false
+  },
+  {
+   "optionDest": "bootloader_ignore_signals",
+   "value": false
+  },
+  {
+   "optionDest": "pathex",
+   "value": "/home/abp/Desktop/Proyectos Python/Scripts/Mr bot/clientes/procesamiento-con-IA/venv/lib/python3.12/site-packages"
+  }
+ ],
+ "nonPyinstallerOptions": {
+  "increaseRecursionLimit": true,
+  "manualArguments": ""
+ }
+}
