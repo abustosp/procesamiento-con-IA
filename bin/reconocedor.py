@@ -162,6 +162,7 @@ def select_folder_and_analyze_pdfs():
     if folder_selected:
         os.listdir(folder_selected)
         result_folder = os.path.join(folder_selected, "Resultado")
+        os.makedirs(result_folder, exist_ok=True)
         pdf_files = [file for file in os.listdir(folder_selected) if file.endswith(".pdf")]
         for pdf_file in pdf_files:
             pdf_path = os.path.join(folder_selected, pdf_file)
